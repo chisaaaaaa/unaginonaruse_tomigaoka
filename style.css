@@ -200,6 +200,13 @@ section {
 /* ===== ABOUT SECTION ===== */
 #about {
     background: linear-gradient(135deg, #faf8f4 0%, #f5f2ed 100%);
+    position: relative;
+    z-index: 0;
+}
+
+.section-padding {
+  padding-top: 150px;
+  padding-bottom: 150px;
 }
 
 .about-title {
@@ -213,6 +220,8 @@ section {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(83, 38, 6, 0.3);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 5;
 }
 
 .about-text {
@@ -220,6 +229,8 @@ section {
     line-height: 1.7;
     margin-bottom: 2rem;
     color: #333;
+    position: relative;
+    z-index: 5;
 }
 
 /* Progressive sizing for about section */
@@ -240,6 +251,20 @@ section {
     .about-title { font-size: 2.5rem; }
     .about-text { font-size: 1.2rem; }
 }
+
+/* === ABOUTセクション: 円形画像の装飾 === */
+.about-unagi-image {
+    position: absolute;
+    top: 0;
+    left: 5rem;
+    width: 1700px;
+    height: 720px;
+    background-image: url('img/u.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
 
 /* ===== MENU SECTION ===== */
 #menu {
@@ -392,11 +417,6 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.menu-image:hover {
-    transform: scale(1.05);
 }
 
 /* ===== ACCESS SECTION ===== */
@@ -473,11 +493,6 @@ section {
     color: #8B4513;
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.phone-link:hover {
-    color: #3b1f0e;
 }
 
 /* ===== CONTACT SECTION ===== */
@@ -501,8 +516,6 @@ section {
 
 /* CHANGED: Improved contact phone styling */
 .contact-phone-container {
-    background: rgba(255,255,255,0.1);
-    border-radius: 15px;
     padding: 1.5rem;
     margin: 2rem 0;
 }
@@ -511,13 +524,6 @@ section {
     color: #f4d03f;
     font-size: 1.3rem; /* CHANGED: Smaller for mobile */
     font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.contact-phone:hover {
-    color: #fff;
-    transform: scale(1.05);
-    text-shadow: 0 0 20px rgba(244, 208, 63, 0.5);
 }
 
 @media (min-width: 576px) {
@@ -560,11 +566,15 @@ section {
     font-size: 2rem;
     transition: all 0.3s ease;
     text-decoration: none;
-    display: inline-block;
-    padding: 0.5rem;
+    display: inline-flex; /* 中央揃えも視野に */
+    justify-content: center;
+    align-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
+
 
 .social-link:hover {
     color: #f4d03f;
@@ -621,7 +631,7 @@ html {
 img {
     max-width: 100%;
     height: auto;
-    loading: lazy;
+    padding: lazy;
 }
 
 /* CHANGED: Improved contrast and readability */
