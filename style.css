@@ -225,7 +225,8 @@ section {
 }
 
 .about-text {
-    font-size: 0.95rem; /* CHANGED: Smaller text for mobile */
+    font-size: 0.99rem; /* CHANGED: Smaller text for mobile */
+    font-weight: bold;
     line-height: 1.7;
     margin-bottom: 2rem;
     color: #333;
@@ -252,17 +253,21 @@ section {
     .about-text { font-size: 1.2rem; }
 }
 
+
+
 /* === ABOUTセクション: 円形画像の装飾 === */
 .about-unagi-image {
     position: absolute;
     top: 0;
-    left: 5rem;
-    width: 1700px;
-    height: 720px;
-    background-image: url('img/u.png');
+    left: 0;
+    width: 100%;
+    height:100%;
+    background-image: url('img/u-chat.png');
     background-size: cover;
     background-position: center;
     z-index: 1;
+    opacity: 0.2; 
+    filter: blur(2px);
 }
 
 
@@ -388,6 +393,7 @@ section {
     margin-bottom: 0.5rem;
     border-radius: 8px;
     border-left: 4px solid #8B4513;
+    font-size: 1rem;
     font-weight: 500;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
@@ -449,6 +455,9 @@ section {
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     margin-bottom: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 @media (min-width: 768px) {
