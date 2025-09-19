@@ -1,7 +1,15 @@
 body{
-    font-size: 1.5rem;
-}
+    font-size: 1.8rem;
+    background-image: url(img/shiro.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 
+}
+* {
+  font-family: 'Noto Serif JP', serif;
+}
 .navbar .nav-link{
     color: #fff !important;
     font-size: 20px;
@@ -23,7 +31,7 @@ html {
 
 .hero{
     padding-top: 80%;
-    background-image: url(img/tareunaju.jpg);
+    background-image: url(img/unaju.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -43,8 +51,8 @@ html {
 }
 
 section{
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 120px;
+    padding-bottom: 120px;
 }
 
 .about{
@@ -61,25 +69,29 @@ section{
   margin: 1.5rem 0;
 }
 
-#menu h1, #access h1{
-    font-size: 2.5rem;
-    font-weight: 500;
-    text-decoration: underline;
-    text-decoration-color: #532606;     /* 下線の色 */
-    text-decoration-thickness: 2px;   /* 線の太さ */
-    text-underline-offset: 10px;       /* テキストとの距離 */
- }
+/* メイン見出し */
+#menu h1,
+#access h1 {
+  text-align: center;
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #3b1f0e;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
 
- .menu{
-    position: relative;
- }
 
- #menu h2 {
-  font-weight: bold;
-  font-size: 1.75rem;
+/* 各メニューセクションの小見出し */
+.section-title {
   border-bottom: 2px solid #8B4513;
   padding-bottom: 0.5rem;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #5c3a1e;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
+
 
 .img-cover {
   object-fit: cover;
@@ -91,3 +103,9 @@ section{
 .row.align-items-stretch {
   min-height: 400px;
 }
+
+.access{
+  position: relative;
+}
+
+
