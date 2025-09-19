@@ -653,22 +653,6 @@ img {
     }
 }
 
-/* CHANGED: Dark mode support */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #2c1810;
-    }
-    
-    #menu, .menu-item, .info-card {
-        background-color: #3a2318 !important;
-        color: #f5f5f5;
-    }
-    
-    .menu-description, .info-content {
-        color: #ccc !important;
-    }
-}
-
 /* CHANGED: High contrast mode support */
 @media (prefers-contrast: high) {
     .hero {
