@@ -129,9 +129,10 @@ html {
 /* ===== HERO SECTION ===== */
 .hero {
     min-height: 100dvh;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     background: linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
                url('img/unaju.jpg') center/cover;
+    background-image: url('img/unaju.webp');
     /* CHANGED: Removed fixed attachment for mobile compatibility */
     background-attachment: scroll;
     display: flex;
