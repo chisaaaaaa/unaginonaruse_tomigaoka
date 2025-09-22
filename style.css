@@ -147,6 +147,12 @@ html {
   background-repeat: no-repeat;
 }
 
+@media (min-width: 992px) {
+  .hero {
+    height: 100vh; /* ← ナビバー込みで全画面 */
+  }
+}
+
 
 
 .hero-title {
