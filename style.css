@@ -227,6 +227,7 @@ section {
 .about-text {
     font-size: 0.99rem; /* CHANGED: Smaller text for mobile */
     font-weight: bold;
+    width: auto;
     line-height: 1.7;
     margin-bottom: 2rem;
     color: #333;
@@ -451,20 +452,26 @@ section {
 
 /* CHANGED: Improved map container */
 .map-container {
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    margin-bottom: 2rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  margin-bottom: 2rem;
+  height: 100%; /* モバイル */
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 @media (min-width: 768px) {
-    .map-container {
-        margin-bottom: 0;
-    }
+  .map-container {
+    margin-bottom: 0;
+    height: 100%; /* タブレット以上 */
+  }
 }
+
 
 /* CHANGED: Better info card design */
 .info-card {
