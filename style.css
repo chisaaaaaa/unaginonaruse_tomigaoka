@@ -31,6 +31,10 @@ html {
     body { font-size: 1.2rem; }
 }
 
+:root {
+  --navbar-height: 56px; /* Bootstrap navbarのデフォルト高さ。調整可 */
+}
+
 /* ===== NAVIGATION ===== */
 .custom-navbar {
     background: rgba(59, 31, 14, 0.95) !important;
@@ -128,8 +132,7 @@ html {
 
 /* ===== HERO SECTION ===== */
 .hero {
-    min-height: 100dvh;
-    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: calc(100dvh - var(--navbar-height));
     background: linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
                url('img/unaju.jpg') center/cover;
     background-image: url('img/unaju.webp');
