@@ -7,18 +7,20 @@
 }
 
 body {
-    font-size: 0.9rem; /* CHANGED: Smaller base font for mobile */
+    font-size: 0.9rem;
     background-color: #faf8f4;
     line-height: 1.6;
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* 横スクロール防止 */
 }
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
-/* CHANGED: Progressive font sizing for different screen sizes */
+/* Progressive font sizing for different screen sizes */
 @media (min-width: 576px) {
     body { font-size: 1rem; }
 }
@@ -37,17 +39,19 @@ html {
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 15px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
-    padding: 0.5rem 0; /* CHANGED: Reduced padding for mobile */
+    padding: 0.5rem 0;
+    z-index: 1050; /* Bootstrap navbarより高く */
 }
 
-/* CHANGED: Custom hamburger menu for better mobile experience */
+/* カスタムハンバーガーメニュー */
 .navbar-toggler {
     border: none !important;
     padding: 4px 8px;
+    background: transparent !important;
 }
 
 .navbar-toggler:focus {
-    box-shadow: none;
+    box-shadow: 0 0 0 2px rgba(244, 208, 63, 0.5);
 }
 
 .navbar-toggler-icon-custom {
@@ -67,7 +71,7 @@ html {
     border-radius: 2px;
 }
 
-/* Hamburger animation */
+/* ハンバーガーアニメーション */
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon-custom span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
@@ -80,42 +84,57 @@ html {
     transform: rotate(-45deg) translate(7px, -6px);
 }
 
-/* CHANGED: Mobile-optimized navigation links */
+/* モバイル最適化ナビゲーションリンク */
 .navbar .nav-link {
     color: #fff !important;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    padding: 0.8rem 1rem !important;
+    padding: 1rem 1.5rem !important;
     transition: all 0.3s ease;
     text-align: center;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    min-height: 48px; /* アクセシビリティ改善 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.navbar .nav-link:hover {
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
     color: #f4d03f !important;
     background-color: rgba(244, 208, 63, 0.1);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 .navbar .nav-link:last-child {
     border-bottom: none;
 }
 
-/* CHANGED: Better mobile navbar collapse behavior */
+/* ブランド名のスタイル改善 */
+.navbar-brand {
+    font-size: 1.5rem !important;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* モバイルnavbar collapse改善 */
 .navbar-collapse {
     background: rgba(59, 31, 14, 0.98);
     border-radius: 0 0 15px 15px;
     margin-top: 0.5rem;
     padding: 1rem 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* Desktop navigation adjustments */
+/* デスクトップナビゲーション調整 */
 @media (min-width: 992px) {
     .navbar .nav-link {
         padding: 0.5rem 1.5rem !important;
         margin: 0 0.5rem;
         border-bottom: none;
         border-radius: 25px;
+        font-size: 1rem;
+        min-height: auto;
     }
     
     .navbar-collapse {
@@ -123,56 +142,44 @@ html {
         border-radius: 0;
         margin-top: 0;
         padding: 0;
+        box-shadow: none;
     }
 }
 
 /* ===== HERO SECTION ===== */
-:root {
-  --navbar-height: 56px; /* 必要なら実際のnavbarの高さに調整 */
-}
-
 .hero {
-  height: calc(100dvh - var(--navbar-height));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-
-  background-color: #faf8f4; /* フォールバック用背景色 */
-  background-image:
-    linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
-    url("img/unaju.jpg"); /* ← .jpg に修正 */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    height: 100vh; /* 完全な全画面表示 */
+    height: 100dvh; /* 動的ビューポート対応 */
+    background: linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
+               url('img/unaju.jpg') center/cover;
+    background-attachment: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem; /* パディングを最小限に */
+    position: relative;
 }
-
-@media (min-width: 992px) {
-  .hero {
-    height: 100vh; /* ← ナビバー込みで全画面 */
-  }
-}
-
-
 
 .hero-title {
-    font-size: 2.5rem; /* CHANGED: Smaller for mobile */
+    font-size: 2.5rem;
     font-weight: 700;
     text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
     margin-bottom: 1rem;
     animation: fadeInUp 1s ease-out;
+    line-height: 1.2;
 }
 
 .hero-subtitle {
-    font-size: 1rem; /* CHANGED: Smaller subtitle for mobile */
+    font-size: 1.1rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     margin-bottom: 0;
+    line-height: 1.4;
 }
 
-/* Progressive sizing for hero text */
+/* Hero段階的サイジング */
 @media (min-width: 576px) {
     .hero-title { font-size: 3rem; }
-    .hero-subtitle { font-size: 1.1rem; }
+    .hero-subtitle { font-size: 1.2rem; }
 }
 
 @media (min-width: 768px) {
@@ -182,13 +189,13 @@ html {
 
 @media (min-width: 992px) {
     .hero {
-        background-attachment: fixed; /* Enable parallax on desktop */
+        background-attachment: fixed;
     }
     .hero-title { font-size: 4rem; }
     .hero-subtitle { font-size: 1.5rem; }
 }
 
-/* CHANGED: Added fade-in animation */
+/* フェードインアニメーション */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -202,7 +209,7 @@ html {
 
 /* ===== SECTIONS ===== */
 section {
-    padding: 3rem 0; /* CHANGED: Reduced padding for mobile */
+    padding: 4rem 0;
 }
 
 @media (min-width: 768px) {
@@ -217,50 +224,57 @@ section {
 #about {
     background: linear-gradient(135deg, #faf8f4 0%, #f5f2ed 100%);
     position: relative;
-    z-index: 0;
+    overflow: hidden;
 }
 
 .section-padding {
-  padding-top: 150px;
-  padding-bottom: 150px;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+    .section-padding {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
 }
 
 .about-title {
     background: linear-gradient(135deg, #532606, #6b3208);
     color: #ffffff;
-    font-size: 1.3rem; /* CHANGED: Smaller for mobile */
+    font-size: 1.4rem;
     font-weight: bold;
-    padding: 0.8rem 1.2rem; /* CHANGED: Reduced padding */
+    padding: 1rem 1.5rem;
     display: inline-block;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(83, 38, 6, 0.3);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     position: relative;
     z-index: 5;
+    line-height: 1.3;
 }
 
 .about-text {
-    font-size: 0.99rem; /* CHANGED: Smaller text for mobile */
-    font-weight: bold;
-    width: auto;
-    line-height: 1.7;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.8;
     margin-bottom: 2rem;
     color: #333;
     position: relative;
     z-index: 5;
 }
 
-/* Progressive sizing for about section */
+/* About段階的サイジング */
 @media (min-width: 576px) {
-    .about-title { font-size: 1.5rem; }
-    .about-text { font-size: 1rem; }
+    .about-title { font-size: 1.6rem; }
+    .about-text { font-size: 1.05rem; }
 }
 
 @media (min-width: 768px) {
     .about-title { 
         font-size: 2rem; 
-        padding: 1rem 2rem; 
+        padding: 1.2rem 2rem; 
     }
     .about-text { font-size: 1.1rem; }
 }
@@ -270,27 +284,28 @@ section {
     .about-text { font-size: 1.2rem; }
 }
 
-
-
-/* === ABOUTセクション: 円形画像の装飾 === */
+/* ABOUTセクション背景画像 */
 .about-unagi-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
     background-image: url('img/u-chat.png');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     z-index: 1;
-    opacity: 0.2; 
+    opacity: 0.15;
     filter: blur(2px);
 }
 
-@media (max-width: 768px) {
-  .about-unagi-image {
-    display: none;
-  }
+/* モバイルで背景画像を軽量化 */
+@media (max-width: 767px) {
+    .about-unagi-image {
+        opacity: 0.1;
+        filter: blur(1px);
+    }
 }
 
 /* ===== MENU SECTION ===== */
@@ -299,15 +314,16 @@ section {
 }
 
 .menu-main-title {
-    font-size: 2rem; /* CHANGED: Smaller for mobile */
+    font-size: 2.2rem;
     font-weight: 800;
     color: #3b1f0e;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    line-height: 1.2;
 }
 
 @media (min-width: 576px) {
-    .menu-main-title { font-size: 2.3rem; }
+    .menu-main-title { font-size: 2.5rem; }
 }
 
 @media (min-width: 768px) {
@@ -318,69 +334,72 @@ section {
     .menu-main-title { font-size: 3.2rem; }
 }
 
-/* CHANGED: Improved menu item layout */
+/* メニューアイテム改善 */
 .menu-item {
     background: #fafafa;
     border-radius: 15px;
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .menu-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(0,0,0,0.15);
 }
 
 .menu-content {
-    padding: 2rem 1.5rem; /* CHANGED: Better mobile padding */
+    padding: 2rem 1.5rem;
 }
 
 @media (min-width: 768px) {
-    .menu-content { padding: 2.5rem; }
+    .menu-content { padding: 3rem 2.5rem; }
 }
 
 .section-title {
     border-bottom: 3px solid #8B4513;
     padding-bottom: 0.5rem;
     display: inline-block;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     color: #5c3a1e;
-    font-size: 1.2rem; /* CHANGED: Smaller for mobile */
+    font-size: 1.3rem;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 @media (min-width: 576px) {
-    .section-title { font-size: 1.4rem; }
+    .section-title { font-size: 1.5rem; }
 }
 
 @media (min-width: 768px) {
-    .section-title { font-size: 1.6rem; }
+    .section-title { font-size: 1.7rem; }
 }
 
 @media (min-width: 992px) {
-    .section-title { font-size: 1.8rem; }
+    .section-title { font-size: 1.9rem; }
 }
 
-/* CHANGED: New menu layout structure */
+/* メニューオプション改善 */
 .menu-option {
     border-left: 4px solid #8B4513;
-    padding-left: 1rem;
-    margin-bottom: 1.5rem;
+    padding-left: 1.2rem;
+    margin-bottom: 2rem;
 }
 
 .menu-grade {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
     color: #3b1f0e;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
 }
 
 .price-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.3rem;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+    align-items: center;
 }
 
 @media (min-width: 576px) {
@@ -392,37 +411,48 @@ section {
 .menu-price {
     background: #8B4513;
     color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 @media (min-width: 576px) {
-    .menu-price { font-size: 0.9rem; }
+    .menu-price { 
+        font-size: 0.95rem;
+        padding: 0.5rem 1.2rem;
+    }
 }
 
 .menu-description {
     color: #666;
     font-style: italic;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
 }
 
-/* CHANGED: Improved drink items layout */
+/* ドリンクアイテム改善 */
 .drink-item {
     background: white;
-    padding: 0.8rem 1rem;
-    margin-bottom: 0.5rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.8rem;
     border-radius: 8px;
     border-left: 4px solid #8B4513;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 500;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* CHANGED: Better responsive image handling */
+.drink-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* メニュー画像コンテナ改善 */
 .menu-image-container {
-    height: 250px; /* CHANGED: Fixed height for mobile */
+    height: 280px;
     overflow: hidden;
     border-radius: 15px;
     margin: 1rem 0;
@@ -430,14 +460,14 @@ section {
 
 @media (min-width: 768px) {
     .menu-image-container {
-        height: 300px;
+        height: 320px;
         margin: 0;
     }
 }
 
 @media (min-width: 992px) {
     .menu-image-container {
-        height: 350px;
+        height: 380px;
     }
 }
 
@@ -445,6 +475,11 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.menu-image:hover {
+    transform: scale(1.05);
 }
 
 /* ===== ACCESS SECTION ===== */
@@ -453,14 +488,15 @@ section {
 }
 
 .access-title {
-    font-size: 2rem; /* CHANGED: Smaller for mobile */
+    font-size: 2.2rem;
     font-weight: 800;
     color: #3b1f0e;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    line-height: 1.2;
 }
 
 @media (min-width: 576px) {
-    .access-title { font-size: 2.3rem; }
+    .access-title { font-size: 2.5rem; }
 }
 
 @media (min-width: 768px) {
@@ -471,40 +507,34 @@ section {
     .access-title { font-size: 3.2rem; }
 }
 
-/* CHANGED: Improved map container */
+/* マップコンテナ改善 */
 .map-container {
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  margin-bottom: 2rem;
-  height: 100%; /* モバイル */
-}
-
-.map-container iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin-bottom: 2rem;
+    height: 300px;
 }
 
 @media (min-width: 768px) {
-  .map-container {
-    margin-bottom: 0;
-    height: 100%; /* タブレット以上 */
-  }
+    .map-container {
+        margin-bottom: 0;
+        height: 100%;
+        min-height: 400px;
+    }
 }
 
-
-/* CHANGED: Better info card design */
+/* 情報カード改善 */
 .info-card {
     background: white;
     border-radius: 15px;
-    padding: 1.5rem;
+    padding: 2rem;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     height: 100%;
 }
 
 .info-item {
-    padding: 1rem 0;
+    padding: 1.2rem 0;
     border-bottom: 1px solid #eee;
 }
 
@@ -515,21 +545,30 @@ section {
 .info-label {
     font-weight: 600;
     color: #3b1f0e;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.05rem;
 }
 
 .info-content {
     color: #555;
     margin-bottom: 0;
     line-height: 1.6;
+    font-size: 0.95rem;
 }
 
-/* CHANGED: Clickable phone number styling */
+/* 電話番号リンク改善 */
 .phone-link {
     color: #8B4513;
     text-decoration: none;
     font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.phone-link:hover,
+.phone-link:focus {
+    color: #532606;
+    text-decoration: underline;
 }
 
 /* ===== CONTACT SECTION ===== */
@@ -539,98 +578,119 @@ section {
 }
 
 .contact-title {
-    font-size: 1.5rem; /* CHANGED: Smaller for mobile */
-    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
 }
 
 @media (min-width: 576px) {
-    .contact-title { font-size: 1.8rem; }
-}
-
-@media (min-width: 768px) {
     .contact-title { font-size: 2rem; }
 }
 
-/* CHANGED: Improved contact phone styling */
+@media (min-width: 768px) {
+    .contact-title { font-size: 2.2rem; }
+}
+
+/* コンタクト電話番号改善 */
 .contact-phone-container {
-    padding: 1.5rem;
+    padding: 2rem 1rem;
     margin: 2rem 0;
 }
 
 .contact-phone {
     color: #f4d03f;
-    font-size: 1.3rem; /* CHANGED: Smaller for mobile */
+    font-size: 1.5rem;
     font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.contact-phone:hover,
+.contact-phone:focus {
+    color: #fff;
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(244, 208, 63, 0.5);
 }
 
 @media (min-width: 576px) {
-    .contact-phone { font-size: 1.6rem; }
+    .contact-phone { font-size: 1.8rem; }
 }
 
 @media (min-width: 768px) {
-    .contact-phone { font-size: 2rem; }
+    .contact-phone { font-size: 2.2rem; }
 }
 
 @media (min-width: 992px) {
-    .contact-phone { font-size: 2.3rem; }
+    .contact-phone { font-size: 2.5rem; }
 }
 
-/* CHANGED: Improved contact note readability */
+/* コンタクトノート改善 */
 .contact-note {
-    font-size: 0.85rem;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    line-height: 1.7;
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
 }
 
 @media (min-width: 576px) {
-    .contact-note { font-size: 0.9rem; }
+    .contact-note { font-size: 0.95rem; }
 }
 
 @media (min-width: 768px) {
     .contact-note { font-size: 1rem; }
 }
 
-/* CHANGED: Better social media section */
+/* ソーシャルメディア改善 */
 .social-media h5 {
     color: #f4d03f;
     font-weight: 600;
+    margin-bottom: 1.5rem;
 }
 
 .social-link {
     color: white;
-    font-size: 2rem;
+    font-size: 2.2rem;
     transition: all 0.3s ease;
     text-decoration: none;
-    display: inline-flex; /* 中央揃えも視野に */
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
+    margin: 0 0.5rem;
 }
 
-
-.social-link:hover {
+.social-link:hover,
+.social-link:focus {
     color: #f4d03f;
     transform: translateY(-3px);
     background: rgba(244, 208, 63, 0.2);
-    box-shadow: 0 5px 15px rgba(244, 208, 63, 0.3);
+    box-shadow: 0 8px 20px rgba(244, 208, 63, 0.3);
 }
 
 @media (min-width: 576px) {
-    .social-link { font-size: 2.2rem; }
+    .social-link { 
+        font-size: 2.5rem;
+        width: 4.5rem;
+        height: 4.5rem;
+    }
 }
 
 @media (min-width: 768px) {
-    .social-link { font-size: 2.5rem; }
+    .social-link { 
+        font-size: 2.8rem;
+        width: 5rem;
+        height: 5rem;
+    }
 }
 
 /* ===== UTILITY CLASSES ===== */
 
-/* CHANGED: Better button styling */
+/* ボタンスタイル改善 */
 .btn-warning {
     background: linear-gradient(135deg, #f4d03f, #f1c40f);
     border: none;
@@ -640,21 +700,20 @@ section {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    min-height: 48px;
 }
 
-.btn-warning:hover {
+.btn-warning:hover,
+.btn-warning:focus {
     background: linear-gradient(135deg, #f1c40f, #f39c12);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(241, 196, 15, 0.4);
     color: #3b1f0e;
 }
 
-/* CHANGED: Smooth scrolling improvements */
-html {
-    scroll-padding-top: 80px; /* Account for fixed navbar */
-}
-
-/* CHANGED: Better focus states for accessibility */
+/* アクセシビリティ改善 */
 .nav-link:focus,
 .btn:focus,
 .social-link:focus,
@@ -664,14 +723,14 @@ html {
     outline-offset: 2px;
 }
 
-/* CHANGED: Loading states and performance improvements */
+/* 画像最適化 */
 img {
     max-width: 100%;
     height: auto;
-    padding: lazy;
+    loading: lazy;
 }
 
-/* CHANGED: Improved contrast and readability */
+/* 動画削減設定 */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -681,7 +740,109 @@ img {
     }
 }
 
-/* CHANGED: High contrast mode support */
+/* ダークモード無効化 - ライトモード固定 */
+@media (prefers-color-scheme: dark) {
+    * {
+        color-scheme: light !important;
+    }
+    
+    html,
+    body {
+        background-color: #faf8f4 !important;
+        color: #333 !important;
+    }
+    
+    .hero {
+        background: linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
+                   url('img/unaju.jpg') center/cover !important;
+    }
+    
+    .custom-navbar {
+        background: rgba(59, 31, 14, 0.95) !important;
+    }
+    
+    #about {
+        background: linear-gradient(135deg, #faf8f4 0%, #f5f2ed 100%) !important;
+        color: #333 !important;
+    }
+    
+    .about-title {
+        background: linear-gradient(135deg, #532606, #6b3208) !important;
+        color: #ffffff !important;
+    }
+    
+    .about-text {
+        color: #333 !important;
+    }
+    
+    #menu {
+        background: #fff !important;
+        color: #333 !important;
+    }
+    
+    .menu-main-title {
+        color: #3b1f0e !important;
+    }
+    
+    .section-title {
+        color: #5c3a1e !important;
+    }
+    
+    .menu-item {
+        background: #fafafa !important;
+    }
+    
+    .menu-grade {
+        color: #3b1f0e !important;
+    }
+    
+    .drink-item {
+        background: white !important;
+        color: #333 !important;
+    }
+    
+    #access {
+        background: linear-gradient(135deg, #f5f2ed 0%, #faf8f4 100%) !important;
+    }
+    
+    .access-title {
+        color: #3b1f0e !important;
+    }
+    
+    .info-card {
+        background: white !important;
+        color: #333 !important;
+    }
+    
+    .info-label {
+        color: #3b1f0e !important;
+    }
+    
+    .info-content {
+        color: #555 !important;
+    }
+    
+    #contact {
+        background: linear-gradient(135deg, #3b1f0e, #532606) !important;
+        color: white !important;
+    }
+    
+    .contact-phone {
+        color: #f4d03f !important;
+    }
+    
+    .social-link {
+        color: white !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    .btn-warning {
+        background: linear-gradient(135deg, #f4d03f, #f1c40f) !important;
+        color: #3b1f0e !important;
+    }
+}
+
+/* ハイコントラストモード */
 @media (prefers-contrast: high) {
     .hero {
         background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
@@ -695,7 +856,7 @@ img {
     }
 }
 
-/* CHANGED: Print styles */
+/* 印刷スタイル */
 @media print {
     .navbar, .social-media {
         display: none !important;
@@ -713,9 +874,7 @@ img {
     }
 }
 
-/* ===== PERFORMANCE OPTIMIZATIONS ===== */
-
-/* CHANGED: GPU acceleration for smooth animations */
+/* パフォーマンス最適化 */
 .menu-item,
 .social-link,
 .contact-phone,
@@ -725,34 +884,125 @@ img {
     will-change: transform;
 }
 
-/* CHANGED: Reduce paint operations */
 .navbar,
 .hero,
 .menu-item {
     contain: layout;
 }
 
-/* ===== ADDITIONAL MOBILE IMPROVEMENTS ===== */
-
-/* CHANGED: Better touch targets for mobile */
+/* モバイル追加改善 */
 @media (max-width: 767px) {
+    /* タッチターゲット改善 */
     .nav-link,
     .social-link,
     .contact-phone,
-    .btn {
-        min-height: 44px;
-        min-width: 44px;
+    .btn,
+    .phone-link {
+        min-height: 48px;
+        min-width: 48px;
+    }
+    
+    /* 横スクロール防止 */
+    .container,
+    .row {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    /* テキスト選択改善 */
+    .menu-price,
+    .contact-phone {
+        user-select: all;
+        -webkit-user-select: all;
     }
 }
 
-/* CHANGED: Improved scrolling on iOS */
+/* iOSスクロール改善 */
 body {
     -webkit-overflow-scrolling: touch;
 }
 
-/* CHANGED: Fix viewport issues on mobile browsers */
+/* ビューポート問題修正とカスタムプロパティ対応 */
+:root {
+    --vh: 1vh;
+}
+
+/* 完全な全画面表示のための追加設定 */
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.hero {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+}
+
+/* モバイル用の追加設定 */
+@media (max-width: 991px) {
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .hero {
+        min-height: 100vh;
+        min-height: 100dvh;
+        /* 強制的に全画面にする */
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        margin: 0;
+        padding: 0 1rem;
+    }
+    
+    /* ナビゲーションがヒーローセクションに重なるように */
+    .custom-navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+    
+    /* ナビゲーションが開いた状態での背景 */
+    .navbar-collapse.show {
+        background: rgba(59, 31, 14, 0.95) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+}
+
 @supports (-webkit-touch-callout: none) {
     .hero {
-        min-height: -webkit-fill-available;
+        height: -webkit-fill-available;
+    }
+}
+
+/* iOSのsafe-area対応 */
+@supports (padding: max(0px)) {
+    .hero {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+        padding-top: max(0px, env(safe-area-inset-top));
+        padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
+}
+
+/* フォーカス表示改善 */
+@media (hover: none) {
+    .menu-item:hover {
+        transform: none;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .social-link:hover {
+        transform: none;
+        background: rgba(255, 255, 255, 0.1);
     }
 }

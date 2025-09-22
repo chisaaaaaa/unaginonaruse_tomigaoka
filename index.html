@@ -2,23 +2,42 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#faf8f4">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>鰻の成瀬　登美ヶ丘店</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ダークモード完全無効化 */
+        :root {
+            color-scheme: light only !important;
+        }
+        
+        html[data-bs-theme="dark"],
+        html[data-theme="dark"] {
+            color-scheme: light !important;
+        }
+        
+        /* Bootstrap 5のダークモード無効化 */
+        [data-bs-theme="dark"] {
+            --bs-body-color: #333 !important;
+            --bs-body-bg: #faf8f4 !important;
+        }
+    </style>
 </head>
 <body>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
     <div class="container">
-        <!-- CHANGED: Added brand/logo area for mobile -->
-        <a class="navbar-brand text-white fw-bold d-lg-none" href="#home"></a>
+        <!-- ブランド名（モバイルのみ表示） -->
+        <a class="navbar-brand text-white fw-bold d-lg-none" href="#home">鰻の成瀬</a>
         
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <!-- CHANGED: Custom hamburger icon for better visibility -->
+            <!-- カスタムハンバーガーアイコン -->
             <span class="navbar-toggler-icon-custom">
                 <span></span>
                 <span></span>
@@ -38,24 +57,25 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero Section - 完全全画面表示 -->
 <div class="hero d-flex align-items-center" id="home">
-    <div class="container text-center">
-        <!-- CHANGED: Made text more responsive -->
-        <h1 class="hero-title text-white">鰻の成瀬</h1>
-        <p class="hero-subtitle text-white">登美ヶ丘店で味わう本格うなぎ料理</p>
-        <!-- CHANGED: Added CTA button for better UX -->
-        <div class="mt-4">
-            <a href="#menu" class="btn btn-warning btn-lg px-4 py-2">メニューを見る</a>
+    <!-- ナビゲーションオーバーレイ防止のためのスペーサー（透明） -->
+    <div class="position-absolute top-0 start-0 w-100" style="height: 80px; z-index: -1;"></div>
+    
+    <div class="container text-center position-relative z-2">
+        <h1 class="hero-title text-white mb-3">鰻の成瀬</h1>
+        <p class="hero-subtitle text-white mb-4">登美ヶ丘店で味わう本格うなぎ料理</p>
+        <div class="hero-cta">
+            <a href="#menu" class="btn btn-warning btn-lg px-4 py-3 fs-5 fw-bold">メニューを見る</a>
         </div>
     </div>
 </div>
 
 <!-- About Section -->
 <section id="about" class="section-padding">
-  <div class="about-unagi-image"></div>
+    <div class="about-unagi-image"></div>
     <div class="container">
-        <div class="row ">
+        <div class="row">
             <div class="col-lg-10 mx-auto text-center">
                 <h1 class="about-title">徹底した品質管理</h1>
                 <p class="about-text">お客様に安心してお召し上がりいただくために、鰻の成瀬は一切の妥協を許しません。<br>
@@ -74,8 +94,7 @@
     <div class="container">
         <h1 class="menu-main-title text-center mb-5">お品書き</h1>
 
-        <!-- CHANGED: Improved responsive layout for menu items -->
-        <!-- Unaju Section -->
+        <!-- うな重セクション -->
         <div class="menu-item mb-5">
             <div class="row g-0 align-items-center">
                 <div class="col-lg-7">
@@ -87,8 +106,9 @@
                                 <div class="price-row">
                                     <span class="menu-price">梅 ¥1,600</span>
                                     <span class="menu-price">竹 ¥2,200</span>
-                                    <span class="menu-price">松 ¥2,600</span><small class="text-muted ms-2">※テイクアウト可</small>
+                                    <span class="menu-price">松 ¥2,600</span>
                                 </div>
+                                <small class="text-muted d-block mt-1">※テイクアウト可</small>
                                 <p class="menu-description">脂少なめあっさり風味</p>
                             </div>
                             
@@ -97,8 +117,9 @@
                                 <div class="price-row">
                                     <span class="menu-price">梅 ¥1,900</span>
                                     <span class="menu-price">竹 ¥2,500</span>
-                                    <span class="menu-price">松 ¥2,900</span><small class="text-muted ms-2">※テイクアウト可</small>
+                                    <span class="menu-price">松 ¥2,900</span>
                                 </div>
+                                <small class="text-muted d-block mt-1">※テイクアウト可</small>
                                 <p class="menu-description">ふっくら柔らかジューシー</p>
                             </div>
                             
@@ -107,8 +128,9 @@
                                 <div class="price-row">
                                     <span class="menu-price">梅 ¥3,400</span>
                                     <span class="menu-price">竹 ¥4,000</span>
-                                    <span class="menu-price">松 ¥4,400</span><small class="text-muted ms-2">※テイクアウト可</small>
+                                    <span class="menu-price">松 ¥4,400</span>
                                 </div>
+                                <small class="text-muted d-block mt-1">※テイクアウト可</small>
                                 <p class="menu-description">国産鰻の上品な味わい</p>
                             </div>
                         </div>
@@ -122,10 +144,9 @@
             </div>
         </div>
 
-        <!-- Drinks Section -->
+        <!-- お飲み物セクション -->
         <div class="menu-item">
             <div class="row g-0 align-items-center">
-                <!-- CHANGED: Reverse order on larger screens for visual variety -->
                 <div class="col-lg-7 order-lg-2">
                     <div class="menu-content p-4">
                         <h2 class="section-title">お飲み物　各種</h2>
@@ -154,23 +175,23 @@
         <h1 class="access-title text-center mb-5">店舗情報</h1>
 
         <div class="row g-4">
-            <!-- CHANGED: Better responsive behavior for map and info -->
             <div class="col-xl-8 col-lg-7">
-                <div class="map-container flex-grow-1">
-                    
+                <div class="map-container">
+                    <div class="ratio ratio-16x9 mb-0">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3254.544654047266!2d135.73062131523143!3d34.71730738043162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6001239ff5cd8a11%3A0x3b814bf88e3fff0f!2z6buE44Gu44KJ44GL44Gm44G_5YyX5rSl5a62IOOCq-ODvOOCuOOCt-ODsw!5e0!3m2!1sja!2sjp!4v1695029876543!5m2!1sja!2sjp"
                             style="border:0;" 
                             allowfullscreen="" 
                             loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="店舗所在地マップ">
                         </iframe>
-                    
+                    </div>
                 </div>
             </div>
 
-            <div class="col-xl-4 col-lg-5 d-flex">
-                <div class="info-card flex-grow-1">
+            <div class="col-xl-4 col-lg-5">
+                <div class="info-card h-100">
                     <div class="info-item">
                         <h6 class="info-label">📍 住所</h6>
                         <p class="info-content">奈良県生駒市真弓南2-6-3</p>
@@ -206,23 +227,21 @@
     <div class="container text-center">
         <h2 class="contact-title mb-4">お問い合わせ</h2>
 
-        <!-- CHANGED: Made phone number clickable and more prominent -->
         <div class="contact-phone-container mb-4">
-            <span class="contact-phone text-decoration-none">
+            <a href="tel:07017921012" class="contact-phone text-decoration-none">
                 <i class="bi bi-telephone-fill me-2"></i>070-1792-1012
-            </span>
+            </a>
         </div>
 
-        <p class="contact-note text-center">
+        <p class="contact-note text-center mb-5">
             空席確認・ネット予約は、ぐるなびの予約システムを利用しています。<br class="d-none d-md-block">
             情報の更新タイミングにより、実際の状況と異なる場合がございます。<br class="d-none d-md-block">
             詳細は直接店舗へご確認ください。
         </p>
 
-        <!-- CHANGED: Improved social media section -->
-        <div class="social-media mt-4">
-            <h5 class="mb-3">Follow Us</h5>
-            <div class="d-flex justify-content-center gap-4">
+        <div class="social-media">
+            <h5 class="mb-4">Follow Us</h5>
+            <div class="d-flex justify-content-center gap-3">
                 <a href="https://www.instagram.com/unagi_naruse_tomigaoka/" target="_blank" class="social-link" aria-label="Instagram">
                     <i class="bi bi-instagram"></i>
                 </a>
@@ -235,5 +254,105 @@
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+<!-- モバイル全画面対応JavaScript -->
+<script>
+// ビューポート高さ調整（モバイル対応）
+function setMobileVH() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    
+    // ヒーローセクションの高さを直接設定
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.height = `${window.innerHeight}px`;
+    }
+}
+
+// ナビゲーション透明化制御
+function handleNavbarTransparency() {
+    const navbar = document.querySelector('.custom-navbar');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (window.innerWidth <= 991) { // モバイルのみ
+        if (scrollTop < 50) {
+            navbar.classList.add('navbar-transparent');
+        } else {
+            navbar.classList.remove('navbar-transparent');
+        }
+    }
+}
+
+// 初期化
+document.addEventListener('DOMContentLoaded', function() {
+    setMobileVH();
+    handleNavbarTransparency();
+});
+
+// イベントリスナー
+window.addEventListener('resize', setMobileVH);
+window.addEventListener('orientationchange', function() {
+    setTimeout(setMobileVH, 100);
+});
+window.addEventListener('scroll', handleNavbarTransparency);
+
+// スムーズスクロール（ナビゲーション高さ考慮なし）
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// iOS Safari用のアドレスバー処理
+if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    window.addEventListener('load', function() {
+        setTimeout(setMobileVH, 500);
+    });
+    
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(setMobileVH, 100);
+    });
+}
+</script>
+
+<!-- モバイル最適化のためのJavaScript -->
+<script>
+// ビューポート高さ調整（iOS Safari対応）
+function setVH() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// 初期化とリサイズイベント
+setVH();
+window.addEventListener('resize', setVH);
+window.addEventListener('orientationchange', () => {
+    setTimeout(setVH, 100);
+});
+
+// スムーズスクロール改善
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const offsetTop = target.offsetTop - 80; // ナビゲーション高さを考慮
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+</script>
 </body>
 </html>
