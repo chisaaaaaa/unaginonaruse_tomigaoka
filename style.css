@@ -132,19 +132,22 @@ html {
 }
 
 .hero {
-  height: calc(100dvh - var(--navbar-height)); /* 画面いっぱい固定 */
+  height: calc(100dvh - var(--navbar-height));
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
 
-  /* 背景の指定（これを消さない！） */
-  background-image: linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
-                    url("img/unaju.jpg");
-  background-size: cover;      /* 画像を画面いっぱいに拡大 */
-  background-position: center; /* 中央に配置 */
+  background-color: #faf8f4; /* フォールバック用背景色 */
+  background-image:
+    linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
+    url("img/unaju.jpg"); /* ← .jpg に修正 */
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }
+
+
 
 .hero-title {
     font-size: 2.5rem; /* CHANGED: Smaller for mobile */
