@@ -31,10 +31,6 @@ html {
     body { font-size: 1.2rem; }
 }
 
-:root {
-  --navbar-height: 56px; /* Bootstrap navbarのデフォルト高さ。調整可 */
-}
-
 /* ===== NAVIGATION ===== */
 .custom-navbar {
     background: rgba(59, 31, 14, 0.95) !important;
@@ -131,17 +127,20 @@ html {
 }
 
 /* ===== HERO SECTION ===== */
+:root {
+  --navbar-height: 56px; /* 必要なら実際のnavbarの高さに調整 */
+}
+
 .hero {
-    min-height: calc(100dvh - var(--navbar-height));
-    background: linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
-               url('img/unaju.jpg') center/cover;
-    background-image: url('img/unaju.webp');
-    /* CHANGED: Removed fixed attachment for mobile compatibility */
-    background-attachment: scroll;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5rem 1rem 3rem; /* CHANGED: Added top padding for fixed navbar */
+  height: calc(100dvh - var(--navbar-height)); /* ここを固定 */
+  background: linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
+              url('img/unaju.webp') center/cover;
+  background-attachment: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--navbar-height) + 1rem) 1rem 3rem;
+  box-sizing: border-box; /* paddingを含めて高さを計算 */
 }
 
 .hero-title {
