@@ -132,15 +132,18 @@ html {
 }
 
 .hero {
-  height: calc(100dvh - var(--navbar-height)); /* ここを固定 */
-  background: linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
-              url('img/unaju.webp') center/cover;
-  background-attachment: scroll;
+  height: calc(100dvh - var(--navbar-height)); /* 画面いっぱい固定 */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--navbar-height) + 1rem) 1rem 3rem;
-  box-sizing: border-box; /* paddingを含めて高さを計算 */
+  box-sizing: border-box;
+
+  /* 背景の指定（これを消さない！） */
+  background-image: linear-gradient(rgba(59, 31, 14, 0.7), rgba(59, 31, 14, 0.5)),
+                    url("img/unaju.webp");
+  background-size: cover;      /* 画像を画面いっぱいに拡大 */
+  background-position: center; /* 中央に配置 */
+  background-repeat: no-repeat;
 }
 
 .hero-title {
