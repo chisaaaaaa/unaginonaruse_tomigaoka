@@ -516,6 +516,15 @@ section {
     height: 300px;
 }
 
+@media (max-width: 575.98px) {
+  .map-container,
+  .info-card {
+    max-width: 90%;  /* 画面幅の90% */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .map-container iframe {
   width: 100%;
   height: 100%;
